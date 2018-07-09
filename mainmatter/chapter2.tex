@@ -1,0 +1,89 @@
+% Chapter 2: Methods
+\section{Data generation}
+Simulations were conducted of a two-arm randomized clinical trial with equal allocation (1:1 treatment:control).  
+We conducted simulations for both continuous and binary outcome and covariate types, and varied the overall trial size from 32 to 96.
+
+The outcome measure (Y) was simulated with a marginal prevalence of 10\% or 50\% in the binary setting to evaluate the potential impact of low numbers of observed outcomes on inference.  
+Continuous outcomes were simulated as normally distributed with constant variance, with mean as a linear combination of the treatment assignment (Z), pre-specified risk factors (X), and observed entry time (T).
+
+Binary risk factors were simulated such that their marginal prevalence was either 25\% or 50\%.  
+Continuous risk factors (X) were generated under a standard normal distribution.  
+The risk factors are modeled as independent.  
+The effect sizes for treatment assignment (Z) and prognostic variables (X) were separately varied from none, low, medium, and high.  
+Balancing factors refer to risk factors used in adaptive allocation procedures, for which it is desired to have comparability either within or between treatment groups.  
+The exact type of balance desired informs the choice of imbalance metric minimized at each sequential allocation step.  
+For instance, it may be of interest to ensure within-strata subgroups have approximately proportional treatment and control assignments (conditional balance), or that treatment groups are otherwise comparable with respect to pre-specified balancing factors (marginal balance). 
+
+Observed patient entry times occurred following a uniform distribution.  
+In subsequent re-randomization analysis, patient entry order is considered fixed (see Section 2aiv on re-randomization tests).  %TODO: ADD section reference!
+Temporal trends in outcome prevalence over the course of a study (drift) were modeled by varying the entry time effect size from none, mild, to severe. 
+For the binary response setting under severe drift, for instance, the drift effect size was chosen such that marginal outcome prevalence varies three-fold over the study period.
+
+\section{Allocation procedures}
+For each simulated set of observed entry times and prognostic factors, treatment group assignments were determined using three allocation procedures: complete randomization, stratified permuted block randomization with fixed block sizes equal to overall trial size divided by number of strata (defined by all combinations of balancing factor levels), and an adapted form of covariate adaptive randomization proposed by Heritier et. al (2005). 
+
+For the covariate-adaptive randomization procedure, the maximum imbalance of treatment to control assignments (overall and within strata defined by each balancing factor level, considered separately) was set to 2.  
+The allocation biasing probability, or the probability of assigning patient to treatment minimizing the imbalance measure when prospective imbalance meets or exceeds a prespecified threshold, was chosen as 0.7 to minimize the effect of non-deterministic and forced allocations on inference.
+
+\section{Varied conditions}
+The following table describes the conditions varied in the binary outcome setting. Note: in the continuous outcome setting, the effect sizes are modified to represent comparable differences in means to the given odds ratios.
+Variable (notation)
+Description
+Associated parameters
+Cardinality
+Response (Y)
+Binary outcome, with marginal prevalence p_Y 
+p_Y = {0.1, 0.5}
+
+2 dichotomous
+1 continuous = 3
+
+Treatment assignment (Z)
+Treatment assignment is 0 or 1 with probability p_alloc.
+p_alloc = {0.5}
+1
+Balancing factors (X)
+Pre-specified risk factors predictive of outcome measure.
+Continuous covariates dichotomized by population median.
+numX = {1,2}
+probsX = {0.25, 0.5}
+
+2 dichotomous
+1 continuous = 3
+Entry time (T)
+Observed entry time
+-
+1
+Trial size (n)
+Overall sample size 
+n = {32, 96}
+2
+Effect size for treatment assignment and prognostic factors.
+Magnitude of effect varied from
+-	None: exp(bX) = 1.0
+-	Low: exp(bX) = 1.1
+-	High: exp(bX) = 3
+bZ = {log(1.0), log(3)}
+bX = {log(1.1), log(3)}
+2 * 2 = 4
+Effect size for drift
+Magnitude of effect varied from
+-	None: exp(bT) = 1.0
+-	Severe: exp(bT) = 3
+bT = {log(1.0), log(3)}
+2
+
+\section{Analysis approaches}
+For each allocation procedure we estimated the treatment effect, adjusted and unadjusted for balancing factors.  To evaluate power, coverage, and type I error control, we report the associated linear and logistic regression model-based p-values, standard errors and Wald-type confidence intervals, based on a two-sided type I error threshold (alpha) of 0.05.  For balancing purposes, continuous balancing factors were first dichotomized by their population median, and later parameterized as continuous in the adjusted analysis.
+
+The simulation model is of the form
+
+The adjusted regression model is
+
+The unadjusted model
+
+
+To compare the bias and power based on re-randomization analysis to that based on standard regression techniques, we compute power, coverage, and level and conducted re-randomization based inference for each simulated trial following covariate adaptive randomization.  Re-randomization is a permutation-based method for estimating uncertainty and follows from the generally accepted sentiment to ‘analyze as you randomize’.  The approach considers the outcomes (Y), balancing factors (X), and observed entry time (T) as fixed and repeats the allocation procedure multiple times, each generating a new sequence of treatment assignments (.  Regression estimates are computed under each re-randomized treatment allocation sequence, and re-randomization based 95\% confidence intervals are generated using the 2.5th and 97.5th quantile of the re-randomization-based treatment effect estimates.  Re-randomization based p-values are estimated using the observed proportion of re-randomized allocation sequences yielding treatment effect estimates as or more extreme than the observed treatment effect.  
+
+Each simulation model configuration was simulated 10,000 trials, for which the re-randomization procedure was repeated 500 times.
+
