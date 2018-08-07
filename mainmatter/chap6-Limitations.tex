@@ -1,0 +1,96 @@
+% Chapter 6: Limitations
+Due to many unforeseen factors, we ran into these complications:
+
+\section{Simulation management}
+For each simulation, we had to keep track of the following:
+\begin{itemize}
+	\item Prognostic factors matrix \textbf{X}
+	\item Entry time vector \textbf{T}
+	\item Allocation sequence vectors \textbf{Z}, each with their associated
+	\item Outcome measure vector \textbf{Y}
+	\item Model-based regression estimates:
+		\begin{itemize}
+		\item Estimate $\hat{\beta}$
+		\item Standard error $\hat{SE}(\hat{\beta})$
+		\item P-value $p_T$
+		\item T-statistic $t_obs$	
+		\item Confidence interval $\hat{CI}(\hat{\beta})$
+		\end{itemize}
+	\item Re-randomization based regression estimates, including:
+		\begin{itemize}
+			\item Re-randomized allocation sequence vectors \textbf{Z}, each with their associated estimate $\hat{\beta}$
+		\end{itemize}
+\end{itemize}
+We structured the simulation around using the \textbf{"simulator"} R package, which handles file management (saving/loading data), RNG seeds for parallel processing, and sequence of simulation steps.
+
+\subsection{Issues}
+\paragraph{Memory management} was poor. 
+The simulator stored data as so:
+\begin{itemize}
+	\item each \textbf{Model} object contains the simulation parameters
+	\item each \textbf{Draw} object contains the prognostic factor and entry times \textbf{(X, T)} for all subjects 
+	\item the first \textbf{Output} object contains the allocation sequence vector and outcome vector \textbf{(Z, Y)} for all subjects
+	\item the second \textbf{Output} object contains the model-based regression estimates ($\hat{\beta}$, $\hat{SE}(\hat{\beta})$, $p_T$, $t_obs$, $\hat{CI}(\hat{\beta})$)
+	\item the third \textbf{Output} object contains the re-randomization based regression estimates ($\hat{\beta}$, $\hat{SE}(\hat{\beta})$, $p_T$, $t_obs$, $\hat{CI}(\hat{\beta})$)
+\end{itemize}
+
+Each 'look' at the data took lots of time, and (to this day) we have not figured out how to efficiently run the code.
+Granted, the task was computationally expensive: on a grid of models, for each simulation, perform 500 re-allocations and estimate the parameters, and then compute summary statistics on the re-randomized procedures? 
+
+At this point, we had already invested significantly into the \textbf{"simulator"} package to consider alternative approaches.
+
+\paragraph{Computing metrics} was not as straightforward as the package authors made it seem.
+
+We computed metrics on the output, but loading the required \textbf{Output} objects into memory was too computationally costly.
+
+We ended up running a separate R script that loaded each "Output" object individually, computed the metrics we wanted, and then saving both the output as .csv and metrics as .csv files.
+
+\paragraph{Memory management} 
+The problem posed challenges for both memory management, and code performance as the number of simulations grew. 
+
+\subsection{Lessons}
+\paragraph{Know when to use packages, and when to make your own code.} At first, using the \textbf{"simulator"} package was great because it handled the RNG generation, file management, and forced us to delineate the steps of the simulation process.
+
+Where using the \textbf{"simulator"} package fell short was when issues arose and we wanted to diagnose problems in the code, as well as work on memory and performance speedups. 
+
+The file sizes were extremely large (even though they were stored as .Rdata files).
+The output of all functions had to be in list() format.
+
+\paragraph{Create a roadmap for programming, including which tools (packages) you're planning to use.} We originally set forth to plan each simulation separately, but due to concerns with memory management (and to a lesser extent,  with handling RNGs under parallelization) we decided on using the \textbf{'simulator'} package.
+
+This proved to be costly to port the code as well as to learn the structure of a new package.  
+Downstream, it cost more time to diagnose issues, as well as increased the difficulty for optimizing the code.
+
+\paragraph{Properly define the scope of your project.}
+We had to pare down the questions we were going to ask, because the scope of the questions we sought to ask was rapidly growing in complexity.
+We wanted to consider the impact of
+\begin{itemize}
+	\item a time-dependent shift in outcome measure or prevalence (drift) by modeling entry time \textbf{T}. 
+	\item allocation method parameters, including
+	\begin{itemize}
+		\item block size \textbf{B} for SBR and its' impact on controlling for drift,
+		\item maximum imbalance bounds \textbf{MI} for CAA procedures and its' impact on inference metrics
+		\item 	
+	\end{itemize}
+\end{itemize}
+
+\section{Further development}
+\paragraph{Package for implementing rerandomization analysis} It would be useful to address the gap between analysis methods proposed in the literature prior to advances in computing that make rerandomization an attractive approach for estimating uncertainty.
+
+\paragraph{Visualizing the restrictions to allocation sequence hyperplane} Part of the difficulty in understanding the effect of covariate adaptive allocation procedures on the validity (in the philosophical sense) of results is the disconnect between the trade-off between forcing/inducing balance in key prognostic factors across treatment groups and the implications for how 'random' we can consider the treatment assignment variable.
+
+When stepping away from complete randomization to restricted randomization approaches, one loses the ability to treat all subjects' treatment assignments as independent.
+The validity of the test (hypothesis test rejection proportion under the null hypothesis, and whether it is below the prespecified type I error threshold) is recovered only when the test is adjusted for the prognostic factors used in the balancing process. % TODO: cite validity + adjustment.
+
+A visualization of all possible randomization schemes (perhaps colored based on the likelihood of observing each sequence) would be useful to:
+\begin{enumerate}
+	\item Understand the impact of restricted randomization methods on restricting the size of the reference distribution,
+	\item Show that certain sequences are 'impossible' under restricted randomization methods,
+	\item Show the properties of SBR (i.e. allocation proportion equals allocation ratio after each filled block)
+	\item Shows control of balance sequentially, one advantage to such procedures.
+\end{enumerate}
+
+\paragraph{Model-based approaches} We did not consider a class of covariate-adaptive allocation methods that posit a model for the relationship between prognostic factors, treatment assignment, and outcome measure in order to bias treatment assignment towards sequences that minimize the variance of the estimated treatment effect.
+As noted in %TODO: reference on optimal ratio for binary tests,
+the optimal ratio of prognostic factors within subgroups is unlikely to be 50:50, meaning the ratio for minimizing the variance of the adjusted treatment effect depends on the strength of the prognostic factor on the outcome (the odds ratio).
+

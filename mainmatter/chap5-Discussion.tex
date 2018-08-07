@@ -1,0 +1,21 @@
+% Chapter 5: Discussion
+\section{Discussion}
+
+\subsection{Points to address}
+\paragraph{Validity of treatment effect estimates on adjustment for balancing factors}
+As the literature notes, %TODO: add citations!
+
+\begin{itemize}
+	\item[adjusting for PFs and validity] the validity of the test (aka type I error control, or having the observed size be under the type I error threshold) is only achieved through adjusting for the variables included in the analysis
+\end{itemize}
+
+\subsection{Results we did not consider}
+We did not examine the following:
+\begin{itemize}
+	\item[ adjusting for subset of PFs and validity ] The effect of adjusting for only a subset of prognostic factors, but more importantly, having prognostic factors that are not used in the balancing process.
+	\item[ using continuous values for PFs after dichotomizing into groups ] We did not assess the impact of using the continuous values for ajustment in the analysis process, even though we had to dichotomize
+	\item[ drift T ] The effect of drift $\beta_{T}$ on bias and validity of treatment effect estimates. We did not examine the interaction between changes in block size or maximum allowed imbalance on this effect.
+	\item[ max imbalance MI ] The effect of allocation method parameters on (unmeasured) metrics of 'balance' and variance of treatment effect estimates.
+	\item[ size of reference distribution ] We did not consider the number of re-randomizations to effectively model 
+\end{itemize}
+

@@ -15,7 +15,7 @@ The exact type of balance desired informs the choice of imbalance metric minimiz
 For instance, it may be of interest to ensure within-strata subgroups have approximately proportional treatment and control assignments (conditional balance), or that treatment groups are otherwise comparable with respect to pre-specified balancing factors (marginal balance). 
 
 Observed patient entry times occurred following a uniform distribution.  
-In subsequent re-randomization analysis, patient entry order is considered fixed (see Section 2aiv on re-randomization tests).  %TODO: ADD section reference!
+In subsequent re-randomization analysis, patient entry order is considered fixed (see Section 2aiv on re-randomization tests).  %TODO: ADD section references!
 Temporal trends in outcome prevalence over the course of a study (drift) were modeled by varying the entry time effect size from none, mild, to severe. 
 For the binary response setting under severe drift, for instance, the drift effect size was chosen such that marginal outcome prevalence varies three-fold over the study period.
 
@@ -27,6 +27,9 @@ The allocation biasing probability, or the probability of assigning patient to t
 
 \section{Varied conditions}
 The following table describes the conditions varied in the binary outcome setting. Note: in the continuous outcome setting, the effect sizes are modified to represent comparable differences in means to the given odds ratios.
+\begin{comment}
+
+%TODO: Format condition table in 'varied conditions'
 Variable (notation)
 Description
 Associated parameters
@@ -72,6 +75,9 @@ Magnitude of effect varied from
 -	Severe: exp(bT) = 3
 bT = {log(1.0), log(3)}
 2
+
+\end{comment}
+
 
 \section{Analysis approaches}
 For each allocation procedure we estimated the treatment effect, adjusted and unadjusted for balancing factors.  To evaluate power, coverage, and type I error control, we report the associated linear and logistic regression model-based p-values, standard errors and Wald-type confidence intervals, based on a two-sided type I error threshold (alpha) of 0.05.  For balancing purposes, continuous balancing factors were first dichotomized by their population median, and later parameterized as continuous in the adjusted analysis.
