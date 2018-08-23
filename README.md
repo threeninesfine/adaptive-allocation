@@ -1,2 +1,2 @@
-# adaptive-allocation
+# colored-stickers
 UW Biostatistics MS thesis

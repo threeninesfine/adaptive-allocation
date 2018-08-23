@@ -1,4 +1,14 @@
 % Chapter 4: Results
 \section{Binary outcome setting}
+\subsection{Subsetted results}
+Simulations with low observed event rates could result in large estimated treatment effects, often corresponding to cases where the \texttt{glm()} algorithm did not converge.
+For this reason, subsetted results are presented for simulation outcomes where both the \texttt{glm()} algorithm converged and at least one outcome was observed in each treatment arm.
+
+This issue occurs more often when sample size is small (n=32), outcome prevalence $(Pr(Y))$ is small, and for small treatment and prognostic factor effect sizes ($bZ$ and $bX$, respectively).
+
+\subsection{Bias}
+Median bias (\ref{tab:batch-1-median-bias-table}) is small if the estimated treatment effect is null, or when sample size is large (n=96).
+Table \ref{tab:batch-1-subset-median-bias-table}
+
 
 \section{Continuous outcome setting}
