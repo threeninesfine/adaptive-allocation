@@ -1,5 +1,29 @@
 % Chapter 4: Results
 \section{Binary outcome setting}
+\subsection{Binary predictors}
+Median bias (Table \ref{tab:b1mb}) is small if the estimated treatment effect is null or when trial size is large (n=96).
+
+Comparing these results to those subsetting on glm() convergence and at least one outcome occuring in each treatment group,  median bias is larger in small sample size settings (see Table \ref{tab:b1smb}).
+
+Subsetting on these two criterion led to excluding greater than 30 percent of simulations in low sample size scenarios.
+
+Adjusting for prognostic factors used in the balancing procedure consistently resulted in increases 
+
+Table \ref{tab:b1p}
+Table \ref{tab:b1sp}
+Table \ref{tab:b1c}
+Table \ref{tab:b1sc}
+
+\subsection{Continuous predictors}
+Table \ref{tab:b1mb}
+Table \ref{tab:b1smb}
+
+Table \ref{tab:b1p}
+Table \ref{tab:b1sp}
+Table \ref{tab:b1c}
+Table \ref{tab:b1sc}
+
+
 \subsection{Subsetted results}
 Simulations with low observed event rates could result in large estimated treatment effects, often corresponding to cases where the \texttt{glm()} algorithm did not converge.
 For this reason, subsetted results are presented for simulation outcomes where both the \texttt{glm()} algorithm converged and at least one outcome was observed in each treatment arm.
@@ -7,8 +31,8 @@ For this reason, subsetted results are presented for simulation outcomes where b
 This issue occurs more often when sample size is small (n=32), outcome prevalence $(Pr(Y))$ is small, and for small treatment and prognostic factor effect sizes ($bZ$ and $bX$, respectively).
 
 \subsection{Bias}
-Median bias (\ref{tab:batch-1-median-bias-table}) is small if the estimated treatment effect is null, or when sample size is large (n=96).
-Table \ref{tab:batch-1-subset-median-bias-table}
+Median bias (Table \ref{tab:b1mb}) is small if the estimated treatment effect is null, or when sample size is large (n=96).
+Table \ref{tab:b1smb}
 
 
 \section{Continuous outcome setting}
