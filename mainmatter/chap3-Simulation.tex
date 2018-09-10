@@ -1,30 +1,65 @@
 % Chapter 3: Simulation tables (and figures)
 
 \section[Binary Y, binary X]{Batch 1: Binary Outcome, Binary Predictors}
-\input{tables/b1_median_bias} \newpage
+
 \input{tables/b1_power} \newpage 
+\input{tables/b1_median_bias} \newpage
 \input{tables/b1_coverage} \newpage
 
-\input{tables/b1_sub_median_bias} \newpage
-\input{tables/b1_sub_power} \newpage 
-\input{tables/b1_sub_coverage} \newpage
+% \input{tables/b1_sub_median_bias} \newpage
+% \input{tables/b1_sub_power} \newpage 
+% \input{tables/b1_sub_coverage} \newpage
+
 
 \section[Binary Y, continuous X]{Batch 2: Binary Outcome, Continuous Predictors}
-\input{tables/b2_median_bias} \newpage
+
 \input{tables/b2_power} \newpage 
+\input{tables/b2_median_bias} \newpage
 \input{tables/b2_coverage} \newpage
 
-\input{tables/b2_sub_median_bias} \newpage
+% \input{tables/b2_sub_median_bias} \newpage
 \input{tables/b2_sub_power} \newpage 
-\input{tables/b2_sub_coverage} \newpage
+% \input{tables/b2_sub_coverage} \newpage
 
 \section[Continuous Y, binary X]{Batch 3: Continuous Outcome, Binary Predictors}
-\input{tables/b3_median_bias} \newpage
+
 \input{tables/b3_power} \newpage 
+\input{tables/b3_median_bias} \newpage
 \input{tables/b3_coverage} \newpage
 
 \section[Continuous Y, continuous X]{Batch 4: Continuous Outcome, Continuous Predictors}
 % TODO(michael): re-run output to compute median bias!
-\input{tables/b4_median_bias} \newpage 
 \input{tables/b4_power} \newpage 
+\input{tables/b4_median_bias} \newpage 
 \input{tables/b4_coverage} \newpage
+
+
+\begin{figure}[H]
+	\includegraphics[width=\linewidth]{figures/b1_power_all_methods_adj_unadj}
+	\caption{Batch 1: Power}
+	\label{fig:b1p}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics[width=\linewidth]{figures/b2_power_all_methods_adj_unadj}
+	\caption{Batch 2: Power}
+	\label{fig:b2p}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics[width=\linewidth]{figures/b2_sub_power_all_methods_adj_unadj}
+	\caption{Batch 2 subset: Power}
+	\label{fig:b2sp}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics[width=\linewidth]{figures/b3_power_all_methods_adj_unadj}
+	\caption{Batch 3: Power}
+	\label{fig:b3p}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics[width=\linewidth]{figures/b4_power_all_methods_adj_unadj}
+	\caption{Batch 4: Power}
+	\label{fig:b4p}
+\end{figure}

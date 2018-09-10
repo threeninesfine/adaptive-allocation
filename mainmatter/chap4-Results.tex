@@ -1,38 +1,53 @@
 % Chapter 4: Results
 \section{Binary outcome setting}
 \subsection{Binary predictors}
-Median bias (Table \ref{tab:b1mb}) is small if the estimated treatment effect is null or when trial size is large (n=96).
+Power is substantially higher using CAA followed by re-randomization when compared to all other methods, including CAA followed by model-based inference.
+The modest increase in power is seen in low sample size settings and low marginal outcome prevalence.
+The trends in power for detecting the unadjusted estimate do not appear to be affected by either prognostic factor prevalence (Pr(X)) or effect size (bX). 
 
-Comparing these results to those subsetting on glm() convergence and at least one outcome occuring in each treatment group,  median bias is larger in small sample size settings (see Table \ref{tab:b1smb}).
+The power benefit from using CAA followed by re-randomization becomes diminished when sample size increases and marginal outcome prevalence increases (see \ref{fig:b1p}, bottom right quadrant).
+Even at large sample sizes re-randomization has greater power than model-based approaches, particularly when outcome prevalence is low.
 
-Subsetting on these two criterion led to excluding greater than 30 percent of simulations in low sample size scenarios.
+Adjusting for prognostic factors used in the balancing method consistently increased power in almost all considered settings.
 
-Adjusting for prognostic factors used in the balancing procedure consistently resulted in increases 
+Median bias (Table \ref{tab:b1mb}) is adequately controlled if the estimated treatment effect is null or when trial size is large (n=96).
 
-Table \ref{tab:b1p}
-Table \ref{tab:b1sp}
-Table \ref{tab:b1c}
-Table \ref{tab:b1sc}
+Coverage probability nears 100 percent at low outcome prevalence and low trial size.
+Coverage probability nears 95 percent when outcome prevalence is high and when sample size is large (n=96).
 
-\subsection{Continuous predictors}
-Table \ref{tab:b1mb}
-Table \ref{tab:b1smb}
-
-Table \ref{tab:b1p}
-Table \ref{tab:b1sp}
-Table \ref{tab:b1c}
-Table \ref{tab:b1sc}
-
-
-\subsection{Subsetted results}
+\subsection{Subsetted simulations}
 Simulations with low observed event rates could result in large estimated treatment effects, often corresponding to cases where the \texttt{glm()} algorithm did not converge.
 For this reason, subsetted results are presented for simulation outcomes where both the \texttt{glm()} algorithm converged and at least one outcome was observed in each treatment arm.
 
 This issue occurs more often when sample size is small (n=32), outcome prevalence $(Pr(Y))$ is small, and for small treatment and prognostic factor effect sizes ($bZ$ and $bX$, respectively).
 
-\subsection{Bias}
-Median bias (Table \ref{tab:b1mb}) is small if the estimated treatment effect is null, or when sample size is large (n=96).
-Table \ref{tab:b1smb}
+\paragraph{Subsetted simulation results}
+Comparing these results to those subsetting on glm() convergence and at least one outcome occuring in each treatment group,  median bias is larger in small sample size settings (see Table \ref{tab:b1smb}).
 
+Subsetting on these two criterion led to excluding greater than 30 percent of simulations in low sample size scenarios.
+
+Subsetted power results show better type I error control for CAA followed by re-randomization overall.
+The modest power increase remains in large sample size (n=96) and low outcome prevalence settings, as well as small sample size (n=32) and high outcome prevalence settings (Pr(Y) = 0.5).
+
+
+\subsection{Continuous predictors}
+In low outcome prevalence (Pr(Y)=0.1) under strong prognostic factor effect size (bX = 3), both CAA with model-based inference and SBR have higher power but fail to control size: the power under the null setting (type I error threshold of 0.05) is greater than 0.10. 
+Looking at Table \ref{tab:b2sp}, power is highest with re-randomization or at least comparable to model-based approaches adjusting for prognostic factors.
+
+\textbf{Note} In row 6 of Table \ref{tab:b2sp}, power is not higher for re-randomization. In these settings (of small sample size and low outcome prevalence), the low number of outcomes may limit the richness of the re-randomization distribution to properly model the sampling distribution of the test statistic.
+
+Adjusting for prognostic factors used in the balancing method controls median bias, whereas the differences between unadjusted and adjusted estimates increases with treatment assignment effect size, and becomes greater as prognostic factor effect size increases. 
+
+Coverage probability is not affected by treatment assignment effect size after adjusting for prognostic factors.
+Considering unadjusted estimates, treatment effect coverage probability changes with prognostic factor effect size and is markedly greater when the effect size is large (bX = 3).
 
 \section{Continuous outcome setting}
+\subsection{Binary predictors}
+All methods perform comparably with respect to power. 
+There is not as much of an advantage for re-randomization in the continuous outcome setting.
+
+\textbf{\textit{Note: in rows 3 and 4}} the power for CAA followed by rerandomization is considerably smaller than most estimates. Verify this!
+
+\subsection{Continuous predictors}
+Adjusting for prognostic factors considerably increases power, especially when prognostic factor effect size is large.
+Again, re-randomization following allocation does not confer an advantage in terms of increased power.

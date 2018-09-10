@@ -2,17 +2,16 @@
 \section[Randomization in RCTs]{Randomization in clinical trials}
 Research to identify effective and/or efficacious interventions requires balance between scientific and logistic constraints. 
 Randomization in clinical trials allows one to infer causation from associations in the presence of an appropriate experimental design, appreciating the limitations in identifying true causal relationships. 
+Complete randomization also ensures all variables, particularly those predictive of the outcome measurement (referred to as prognostic factors) have balanced distributions across groups, on average. 
+However, the likelihood of imbalance increases as the trial sample size decreases or the number of measured prognostic variables increases.  
 
-Oftentimes it is of interest to measure and adjust for known variables predictive of the outcome measurement (prognostic factors), to reduce confounding and to increase efficiency.  
-On average, simple (or complete) randomization ensures the distribution of prognostic factors, measured and unmeasured, are balanced across groups.  
-Chance imbalance in important prognostic factors may be seen as impacting the credibility of observed treatment effect estimates.  
-The likelihood of imbalance increases as the sample size decreases or the number of prognostic variables increases.  
 Especially in small studies, at any given point in the randomization process there could be a substantial imbalance in the number of patients assigned to each group.  
+Chance imbalance in important prognostic factors may be seen as impacting the credibility of observed treatment effect estimates. 
 For this reason, restricted randomization techniques are often used to guarantee the sequential and overall imbalance in the number of participants in each group is controlled.
-
+We introduce restricted randomization and discuss their extension to control imbalance in prognostic factors by means of stratification or covariate adaptive randomization.
 
 \section{Restricted randomization}
-Blocked randomization is a restricted randomization approach that ensures current and overall imbalance in treatment assignments are controlled.  
+Blocked randomization is a widely accepted restricted randomization method that ensures current and overall imbalance in treatment assignments are controlled.  
 Sequential balance is achieved by specifying a block size for which the sequence of (usually equal numbers of) treatment assignments is permuted and assigned to patients as they are enrolled. 
 However, blocked randomization does not by itself guarantee overall balance in known prognostic variables of interest.  
 For this reason, blocking is often combined with stratification to make study groups comparable with regard to specified stratifying factors.  
@@ -52,7 +51,15 @@ Model-based approaches are another alternative approach to dynamic randomization
 Model-based methods can flexibly incorporate continuous prognostic factors without the need to dichotomize into groups, and can include interaction terms and balance prognostic factors even when the number of variables is large.  
 Aickin (1998, 2001, 2009) proposed a model-based approach to covariate adaptive randomization, where a subjects’ treatment assignment is based on maximizing the log-likelihood of the model. 
 
-\section{Analysis methods}
+\section{Adjusting for prognostic factors in the analysis model}
+Statistical adjustment is another approach to addressing prognostic factors that may confound the relationship between an intervention (the predictor of interest) and the outcome measure.
+Oftentimes it is of interest to measure and adjust for known variables predictive of the outcome measurement in the analysis model. 
+% Estimates adjusted for known prognostic factors can provide both scientific and statistical advantages.
+It may be scientifically meaningful to provide estimates for known confounders or if the effect may differ within subgroups. 
+Statistically, adjustment can potentially reduce bias from confounding and increase efficiency.
+Statistical adjustment accounts for, but does not control, imbalance in known prognostic factors predictive of the outcome measurement. 
+
+\section{Analysis considerations under alternative randomization schemes}
 Analysis of trials using a covariate adaptive allocation (CAA) scheme must account for the randomization scheme to recover the precision gains conferred by inducing more balanced treatment groups with respect to chosen balancing factors.  
 To obtain the correct variance term and significance level for the test statistic, one must consider all possible sequences of assignments which could have been made in repeated trials assuming no group differences in mean response.  
 In most cases, ignoring the randomization procedure and using standard regression methods that implicitly assume complete randomization lead to larger variance estimates and conservative inference. 
@@ -69,7 +76,7 @@ Contour plots of effect size by sample size will compare power across methods fo
 We are also interested if and when the answers to the above questions change when the effect size of prognostic factors is varied relative to the treatment effect, the baseline prevalence varies from 5\% to 50\% in the binary outcome setting, inference on treatment effect is performed using none (or a subset) of the prognostic variables, and when the sample size is varied.
 It is well known that ignoring the minimization design tends to yield conservative inference, and that adjusting for covariates used in the randomization scheme (balancing factors) recovers type I error rate to nominal significance levels (Xu, Proschan, Lee 2016). 
 Through comparison of estimated marginal and conditional treatment effects we seek to confirm this finding.
-We consider different sample sizes ranging from N=32 to 108 to compare CAR to SBR as small scale trials are the setting in which alternative randomization methods are considered. 
+We consider different sample sizes ranging from N=32 to 96 to compare CAR to SBR as small scale trials are the setting in which alternative randomization methods are considered. 
 We seek to identify the specific conditions by which CAR confers a precision advantage, if any, relative to other methods to offset the operational complexities involved in implementing an adaptive allocation procedure.  
 Our intent is to provide guidance to clinical researchers for determining under what settings covariate adaptive allocation provides precision gains relative to competing approaches as well as which analysis method yields valid tests with the most power. 
 
