@@ -1,9 +1,119 @@
 % Chapter 5: Discussion
 \section{Discussion}
+We sought to address whether covariate-adaptive allocation followed by re-randomization conferred any statistical power advantage relative to complete randomization, stratified block randomization, and covariate-adaptive allocation using model-based inference.
+
+\subsection{Review of Results}
+We should address the following topics:
+\begin{enumerate}
+	\item Does adjusting for balancing factors affect validity, or power? (short and long answer: yes).
+	\begin{enumerate}
+		\item Forsythe (1987) showed Type 1 error is preserved if analysis adjusts for balancing factors
+		\item Birkett (1985) shows omitting balancing factors in linear models leads to conservative Type 1 error
+		\item Shao et. al (2010) show test procedure valid for complete randomization is valid for CAR provided correct model specification, including balancing factors in model.
+	\end{enumerate}
+	\item Does re-randomization following CAA confer a power advantage relative to complete randomization?
+	\item Does re-randomization following CAA confer a power advantage relative to model-based analysis following CAA?
+\end{enumerate}
+
+\subsection{Limitations}
+We would have liked to address the following weak points in our approach:
+\begin{enumerate}
+	\item \textbf{Model drift} to assess advantage of re-randomization analysis to model-based methods on reducing bias and increasing power
+	\item Considered \textbf{varying allocation method imbalance parameters} for balancing prognostic factors. Reporting metrics on "cosmetic balance" would highlight differences between randomization approaches and main practical reason behind implementing constrained randomization approaches.
+	\item Consider \textbf{different non-continuous outcome settings} where constrained randomization approaches are commonly used (e.g. Poisson regression, proportional hazards regression).
+	\item Varying \textbf{number of prognostic factors} and adjusting for a subset of prognostic factors.  Larger numbers of predictors is the case where stratification fails to provide balance and dynamic hierarchical schemes such as Heritier et. al 2005 can control balance.
+	\item \textbf{Adjusting for continuous prognostic factors} (dichotomized for allocation) as \textbf{continuous}
+	\item \textbf{Confidence intervals for re-randomization are not valid for parameter estimation}, as they are generated under the null hypothesis
+	\item Considered \textbf{model-based approaches} that would pick allocations that minimize the variance of the estimated treatment effect
+\end{enumerate}
+
+
+\subsection{Potential next steps}
+If we had more time, we would have liked to:
+\begin{enumerate}
+	\item Model the impact of drift
+	\item Vary imbalance parameters for all constrained randomization methods
+	\item Consider count and time-to-event settings
+	\item Implement approaches for confidence intervals for treatment effect under alternative hypotheses (bootstrap, etc.)
+\end{enumerate}
+
+
+\subsection{Concluding remarks}
+We conclude with the following remarks:
+\begin{enumerate}
+	\item Adjusting for balancing factors is necessary to guarantee validity of analysis approach, model-based or otherwise
+	\item Re-randomization following any allocation method is recommended under certain settings: 
+	\begin{itemize}
+		\item Under drift: to reduce bias and power
+		\item To increase power relative to model-based approaches by recovering precision gain from balancing procedure
+	\end{itemize}
+	\item There is considerable value in considering the type of balance desired and choosing an appropriate allocation method.
+	\begin{itemize}
+		\item Conditional or marginal balance: conditional balance may be desired if subgroup effects are of interest, marginal balance may be desired if comparability across treatment arms is most important
+		\item CAR methods can control treatment arm imbalance within group-level covariates where stratification would yield too small sample sizes within strata.
+	\end{itemize}
+	\item Balancing distribution of prognostic factors not guaranteed to increase precision in non-continuous outcome settings
+	\begin{itemize}
+		\item Equal balance across treatment arms will not necessarily guarantee variance of estimated treatment effect is minimized
+	\end{itemize}
+	\item Implementing a random element in the constrained allocation procedure is recommended; to prevent overly restricting candidate set size of allocation sequences (see Kuznetsova 2009 for refs, incl. ICH 1998; CPMP 2003)
+\end{enumerate}
+
+
+
+\section{Addressing reader comments}
+\paragraph{Mike L: Address if power of re-randomization due to inflated Type I error}
+Potential for increased power of rerandomization in small sample sizes could be in part due to the poor type 1 error control.
+
+For binary outcomes and predictors, CAA with rerandomization has slightly inflated type I error of 0.075 and 0.071 when n=32, outcome prevalence is 10\%, and with low and high prognostic factor effect size, respectively.
+In contrast, all model-based methods had type 1 error below 0.018 in the same setting regardless of allocation method (Table \ref{tab:b1p} Rows 1 and 2).
+Increasing outcome prevalence to 50\% lowers the type 1 error of rerandomization following CAA to 0.057 and 0.056 (see Table \ref{tab:b1p} Rows 13, 14), whereas increasing prognostic factor effect size had no impact on type 1 error control.
+
+Considering subsetted results in Table \ref{tab:b1sp} under the same settings show CAA with re-randomization has type 1 error of 0.017 and 0.025 for n=32, outcome prevalence of 10\%, with low and high prognostic factor effect size, respectively.
+Again, all model-based methods had type 1 error below 1\% with a specified type 1 error threshold of 5\%.
+Increasing outcome prevalence to 50\% from 10\%, the type 1 error rate is 0.057 and 0.056 and nears the nominal rate (see Table \ref{tab:b1sp} Rows 13, 14).
+
+For binary outcomes and continuous predictors, CAA with rerandomization has type I error of 0.061 when n=32, outcome prevalence is 10\%, and for both low and high prognostic factor effect size.
+Compared to model based methods, their adjusted type 1 errors are uniformly higher and increase to above 12.5\% when prognostic factor effect size is increased from low to high (see Table \ref{tab:b2p}, Rows 1,2).
+At large sample sizes, model-based methods have type 1 error near half the nominal 0.05 rate while re-randomization has slightly inflated type 1 error of 0.063 (see Table \ref{tab:b2p}, Rows 13, 14).
+
+For the continuous outcome settings, rerandomization following CAA has comparable type 1 error rates to model-based methods.
+
+\begin{enumerate}
+	\item  show CAA with re-randomization has type 1 error of 0.075 and 0.071 for n=32, outcome prevalence of 10\%, with low and high prognostic factor effect size, respectively.
+	\begin{enumerate}
+		\item Increasing outcome prevalence to 50\% from 10\% lowers type 1 error rate to 0.057 and 0.056 (see Table \ref{tab:b1p} Rows 13, 14)
+		\item Increasing prognostic factor prevalence to 50\% from 25\% (with outcome prevalence of 10\%) does not affect type 1 error rate (0.078 and 0.070, respectively: see Table \ref{tab:b1p} Rows 7,8)
+		\item Further increasing outcome prevalence to 50\% from 10\% lowers type 1 error rate to 0.062 and 0.059 (see Table \ref{tab:b1p} Rows 19, 20)
+	\end{enumerate}
+	\item Subsetted results on Table \ref{tab:b1sp} Rows 1 and 2 show CAA with re-randomization has type 1 error of 0.017 and 0.025 for n=32, outcome prevalence of 10\%, with low and high prognostic factor effect size, respectively.
+	\begin{enumerate}
+		\item Increasing outcome prevalence to 50\% from 10\% increases type 1 error rate to the nominal rate of 0.057 and 0.056 (see Table \ref{tab:b1sp} Rows 13, 14)
+		\item Increasing prognostic factor prevalence to 50\% from 25\% (with outcome prevalence of 10\%) does not affect type 1 error rate (0.021 and 0.022, respectively: see Table \ref{tab:b1sp} Rows 7,8)
+		\item Further increasing outcome prevalence to 50\% from 10\% increases type 1 error rate to 0.062 and 0.059 (see Table \ref{tab:b1sp} Rows 19, 20)
+	\end{enumerate}
+\end{enumerate}
+
+\begin{comment}
+
+
+
+\paragraph{Optimal allocation ratio logistic regression} In non-continuous outcome settings, balancing treatment group assignments within prognostic factor strata may be suboptimal with respect to maximizing power for detecting a significant treatment effect.
+For instance, in the binary outcome setting the optimal allocation ratio of treatment to control depends on both the 
+
+\paragraph{Adjustment for balancing factors and validity}
+
+
+
+We want to address the following statements:
+\begin{enumerate}
+	\item In non-continuous outcome settings, it may be suboptimal 
+\end{enumerate}
+
 
 \subsection{Points to address}
-\paragraph{Validity of treatment effect estimates on adjustment for balancing factors}
-As the literature notes, %TODO: add citations!
+
+
 
 \begin{itemize}
 	\item[adjusting for PFs and validity] the validity of the test (aka type I error control, or having the observed size be under the type I error threshold) is only achieved through adjusting for the variables included in the analysis
@@ -19,3 +129,4 @@ We did not examine the following:
 	\item[ size of reference distribution ] We did not consider the number of re-randomizations to effectively model 
 \end{itemize}
 
+\end{comment}

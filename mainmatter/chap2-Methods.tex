@@ -1,32 +1,57 @@
 % Chapter 2: Methods
 \section{Data generation}
 Simulations were conducted of a two-arm randomized clinical trial with equal allocation (1:1 treatment:control).  
-We conducted simulations for both continuous and binary outcome and covariate types, and varied the overall trial size from 32 to 96.
+We conducted simulations for both continuous and binary outcome and covariate types, and varied the overall trial size (n) from 32 to 96.
 
 The outcome measure (Y) was simulated with a marginal prevalence of 10\% or 50\% in the binary setting to evaluate the potential impact of low numbers of observed outcomes on inference.  
-Continuous outcomes were simulated as normally distributed with constant variance, with mean as a linear combination of the treatment assignment (Z), pre-specified risk factors (X), and observed entry time (T).
+Continuous outcomes were simulated as normally distributed with constant variance, with mean as a linear combination of the treatment assignment (Z) and pre-specified prognostic factors (X).
 
 Binary risk factors were simulated such that their marginal prevalence was either 25\% or 50\%.  
-Continuous risk factors (X) were generated under a standard normal distribution.  
-The risk factors are modeled as independent.  
+Continuous risk factors were generated under a standard normal distribution.  
+The prognostic factors are modeled as independent.  
 The effect sizes for treatment assignment (Z) and prognostic variables (X) were separately varied from none, low, medium, and high.  
-Balancing factors refer to risk factors used in adaptive allocation procedures, for which it is desired to have comparability either within or between treatment groups.  
+Balancing factors refer to prognostic factors used in adaptive allocation procedures, for which it is desired to have comparability either within or between treatment groups.  
 The exact type of balance desired informs the choice of imbalance metric minimized at each sequential allocation step.  
 For instance, it may be of interest to ensure within-strata subgroups have approximately proportional treatment and control assignments (conditional balance), or that treatment groups are otherwise comparable with respect to pre-specified balancing factors (marginal balance). 
 
 Observed patient entry times occurred following a uniform distribution.  
-In subsequent re-randomization analysis, patient entry order is considered fixed (see Section 2aiv on re-randomization tests).  %TODO: ADD section references!
-Temporal trends in outcome prevalence over the course of a study (drift) were modeled by varying the entry time effect size from none, mild, to severe. 
-For the binary response setting under severe drift, for instance, the drift effect size was chosen such that marginal outcome prevalence varies three-fold over the study period.
+In subsequent re-randomization analysis, patient entry order is considered fixed (see last subsection entitled 'Re-randomization inference'). 
 
 \section{Allocation procedures}
-For each simulated set of observed entry times and prognostic factors, treatment group assignments were determined using three allocation procedures: complete randomization, stratified permuted block randomization with fixed block sizes equal to overall trial size divided by number of strata (defined by all combinations of balancing factor levels), and an adapted form of covariate adaptive randomization proposed by Heritier et. al (2005). 
+For each simulated set of observed entry times and prognostic factors, treatment group assignments were determined using three allocation procedures: complete randomization, stratified permuted block randomization with fixed block sizes,\footnote{Block sizes are equal to overall trial size divided by number of strata, which are defined by all combinations of balancing factor levels.} and an adapted form of covariate adaptive allocation proposed by Heritier et. al (2005). 
 
-For the covariate-adaptive randomization procedure, the maximum imbalance of treatment to control assignments (overall and within strata defined by each balancing factor level, considered separately) was set to 2.  
-The allocation biasing probability, or the probability of assigning patient to treatment minimizing the imbalance measure when prospective imbalance meets or exceeds a prespecified threshold, was chosen as 0.7 to minimize the effect of non-deterministic and forced allocations on inference.
+For the covariate adaptive allocation procedure, the maximum imbalance of treatment to control assignments (overall and within strata defined by each balancing factor level, considered separately) was set to 2.  
+The allocation biasing probability, or the probability of assigning patient to treatment minimizing the imbalance measure when prospective imbalance meets or exceeds a prespecified threshold, was chosen as 0.7 to minimize the effect of non-deterministic allocations on inference.
 
 \section{Varied conditions}
-The following table describes the conditions varied in the binary outcome setting. Note: in the continuous outcome setting, the effect sizes are modified to represent comparable differences in means to the given odds ratios.
+The following table describes the conditions varied in the binary outcome setting. 
+\begingroup\fontsize{7}{9}\selectfont
+\rowcolors{2}{white}{gray!6}
+\begin{longtable}[t]{llll}
+	\caption{\label{tab:conditions}Simulation study conditions}\\
+	\hiderowcolors
+	\toprule
+	Variable (notation) & Description & Associated parameters & Cardinality \\
+	\midrule
+	\showrowcolors
+	Response (Y) & Outcome, binary or continuous & \begin{tabular}{@{}l@{}}Marginal prevalence \\ $p_Y\equiv Pr(Y=1) = \{0.1, 0.5\}$ \end{tabular} & \begin{tabular}{@{}l@{}}2 dichotomous, \\ 1 continuous = 3\end{tabular}\\
+	Treatment assignment (Z) & $Z = \{0,1\}$ & $p_{alloc}\equiv Pr(Z=1) = 0.5$ & 1 \\
+	Prognostic factors (X) & \begin{tabular}{@{}l@{}} Binary:  $X = \{0,1\}$ \\ 	Continuous: dichotomized by pop. median \end{tabular}
+& $p_X\equiv Pr(X=1) = \{0.25, 0.5\}$ & \begin{tabular}{@{}l@{}}2 dichotomous, \\ 1 continuous = 3\end{tabular}\\
+	Trial size (n) & Overall sample size & $n = \{32, 96\}$ & 2 \\
+	Effect sizes ($\beta_X$ and $\beta_Z$)$^2$ & 
+	$\beta =\begin{dcases}
+	\text{None:} & \exp(\beta) = 1 \\
+	\text{Low:} & \exp(\beta) = 1.1 \\
+	\text{High:} & \exp(\beta) = 3 
+	\end{dcases}$
+ & \begin{tabular}{@{}l@{}}$\beta_Z = \{log(1.0), log(1.1), log(3)\}$ \\ $\beta_X = \{log(1.1), log(3)\}$\end{tabular}  & 3*2 = 6\\
+	\bottomrule
+\end{longtable}
+\rowcolors{2}{white}{white}\endgroup{}
+\footnotetext[2]{In the continuous outcome setting, the effect sizes are modified to represent comparable differences in means to the given odds ratios.}
+
+
 \begin{comment}
 
 %TODO: Format condition table in 'varied conditions'
@@ -80,16 +105,28 @@ bT = {log(1.0), log(3)}
 
 
 \section{Analysis approaches}
-For each allocation procedure we estimated the treatment effect, adjusted and unadjusted for balancing factors.  To evaluate power, coverage, and type I error control, we report the associated linear and logistic regression model-based p-values, standard errors and Wald-type confidence intervals, based on a two-sided type I error threshold (alpha) of 0.05.  For balancing purposes, continuous balancing factors were first dichotomized by their population median, and later parameterized as continuous in the adjusted analysis.
+For each allocation procedure we estimated the treatment effect, adjusted and unadjusted for prognostic factors.  To evaluate power, coverage, and type I error control, we report the associated linear and logistic regression model-based p-values and Wald-type confidence intervals, based on a two-sided type I error threshold of 0.05.  For balancing purposes, continuous prognostic factors were first dichotomized by their population median, and later parameterized as continuous in the adjusted analysis.
 
 The simulation model is of the form
+\begin{equation}
+g(E[Y_i|Z_i, \mathbf{X}_i]) = \beta_0 + \beta_Z \cdot Z_i + \beta_X \cdot \mathbf{X}_{i}.
+\end{equation}
+the adjusted regression model is,
+\begin{equation}
+g(E[Y_i|Z_i, \mathbf{X}_i]) = \beta_0 + \beta_Z \cdot Z_i + \beta_X \cdot \mathbf{X}_{i},
+\end{equation}
+and the unadjusted model is
+\begin{equation}
+g(E[Y_i|Z_i]) = \gamma_0 + \gamma_Z \cdot Z_i,
+\end{equation}
+where $g()$ is the identity link when $Y$ is continuous and the logit link when $Y$ is binary.
 
-The adjusted regression model is
+\subsection{Re-randomization inference}
+To compare the bias and power based on re-randomization analysis to that based on standard regression techniques, we compute power, coverage, and level and conducted re-randomization based inference for each simulated trial following covariate adaptive allocation.  
+Re-randomization is a permutation-based method for estimating uncertainty and follows from the generally accepted sentiment to ‘analyze as you randomize’.  
+The approach considers the outcomes, prognostic factors, and observed entry time as fixed and repeats the allocation procedure multiple times, each generating a new sequence of treatment assignments.  
+Regression estimates are computed under each re-randomized treatment allocation sequence, and re-randomization based 95\% confidence intervals are generated using the 2.5th and 97.5th quantile of the re-randomization-based treatment effect estimates.  
+Re-randomization based p-values are estimated using the observed proportion of re-randomized allocation sequences yielding treatment effect estimates as or more extreme than the observed treatment effect.  
 
-The unadjusted model
-
-
-To compare the bias and power based on re-randomization analysis to that based on standard regression techniques, we compute power, coverage, and level and conducted re-randomization based inference for each simulated trial following covariate adaptive randomization.  Re-randomization is a permutation-based method for estimating uncertainty and follows from the generally accepted sentiment to ‘analyze as you randomize’.  The approach considers the outcomes (Y), balancing factors (X), and observed entry time (T) as fixed and repeats the allocation procedure multiple times, each generating a new sequence of treatment assignments (.  Regression estimates are computed under each re-randomized treatment allocation sequence, and re-randomization based 95\% confidence intervals are generated using the 2.5th and 97.5th quantile of the re-randomization-based treatment effect estimates.  Re-randomization based p-values are estimated using the observed proportion of re-randomized allocation sequences yielding treatment effect estimates as or more extreme than the observed treatment effect.  
-
-Each simulation model configuration was simulated 10,000 trials, for which the re-randomization procedure was repeated 500 times.
+Each simulation model configuration was simulated 5,000 trials, for which the re-randomization procedure was repeated 500 times.
 

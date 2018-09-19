@@ -16,12 +16,13 @@ Sequential balance is achieved by specifying a block size for which the sequence
 However, blocked randomization does not by itself guarantee overall balance in known prognostic variables of interest.  
 For this reason, blocking is often combined with stratification to make study groups comparable with regard to specified stratifying factors.  
 
-Stratified randomization is a procedure that separates the recruitment population into smaller subgroups (strata) where randomization, either simple or blocked, is performed.  
+Stratified randomization is a procedure that separates the recruitment population into smaller subgroups (strata) where randomization, either complete or blocked, is performed.  
 This property can be useful in multi-center trials, for instance, where it is of interest to account for between-center variability in patient outcomes due to unmeasured or unimportant factors \textit{a priori}. 
 While the randomization ratio is guaranteed to hold within pre-specified blocks of enrolled subjects, in small trials with many stratification factors one cannot assure accrued patients will fill the block for each subgroup, and randomization within strata alone will not ensure balance.  
 
-\section{Dynamic (adaptive) randomization}
-Stratified block randomization is considered a static randomization method, as the probability of treatment assignment is not conditional on information on patients already enrolled.  
+\section{Adaptive randomization}
+
+A randomization method is static if the probability of treatment assignment is not conditional on information on patients already enrolled.
 In contrast, adaptive (or dynamic) randomization approaches control imbalance by dynamically altering the randomization probability based on accrued patient information.  
 In this thesis we consider covariate adaptive randomization procedures, which are a natural comparison to static randomization strategies intended to control imbalance of baseline prognostic factors across treatment groups.  
 These procedures have been increasingly used as an alternative to stratified block randomization, particularly in small scale clinical trials with many prognostic factors.
@@ -34,15 +35,15 @@ Simple randomization is performed until the disparity reaches a prespecified lim
 
 Taves (1974) extended Efron’s biased coin design to the context of small scale clinical trials, where it is of interest to constrain imbalance in multiple prognostic factors across treatment groups. 
 Briefly, the method sequentially allocates incoming patients deterministically to the treatment category that minimizes the overall unweighted sum of covariate imbalance given the new assignment. 
-The assignment is performed deterministically: assignment is randomized only when assignment to either treatment category results in the same imbalance. 
+The assignment is performed deterministically: assignment is randomized only when allocation to either treatment category results in the same imbalance. 
 Pocock and Simon (1975) further generalized Taves’ method to incorporate relative importance of prognostic factors by introducing weighting of covariate imbalances into the overall imbalance metric. 
 
-Signorini et. al 1993 extended earlier methods in order to induce balance both overall and within strata while avoiding investigator bias through unblinding.  
+Signorini et. al (1993) extended earlier methods in order to induce balance both overall and within strata while avoiding investigator bias through unblinding.  
 He proposed a tree-based method of dynamic balancing randomization (DBR) that evaluates imbalance for each prognostic factor in a nested fashion by their prespecified order of importance.  
 The method flexibly allows for different levels of imbalance in different strata and ensures conditional balance, meaning that within each subgroup the ratio of treatment assignment is constrained within prespecified bounds.  
 However, the method does not guarantee balanced group assignments will be achieved within each prognostic factor considered separately. 
 
-Heritier et. al (2005) modify Signorini et. al’s DBR method to control imbalance marginally within each prognostic factor.  
+Heritier et. al (2005) modify Signorini et. al’s DBR method to instead control imbalance marginally within each prognostic factor.
 For each accrued patient, the potential imbalance for each treatment assignment is considered sequentially within each prognostic factor in decreasing order of importance.  
 If the potential observed imbalance exceeds a prespecified threshold, assignment is performed deterministically (or forced) to the group which minimizes the imbalance.  
 Heritier et. al suggested including non-deterministic allocation to reduce the number of forced allocations and prevent investigator unblinding.
@@ -56,7 +57,7 @@ Statistical adjustment is another approach to addressing prognostic factors that
 Oftentimes it is of interest to measure and adjust for known variables predictive of the outcome measurement in the analysis model. 
 % Estimates adjusted for known prognostic factors can provide both scientific and statistical advantages.
 It may be scientifically meaningful to provide estimates for known confounders or if the effect may differ within subgroups. 
-Statistically, adjustment can potentially reduce bias from confounding and increase efficiency.
+Statistically, adjustment can potentially reduce bias from confounding and increase precision.
 Statistical adjustment accounts for, but does not control, imbalance in known prognostic factors predictive of the outcome measurement. 
 
 \section{Analysis considerations under alternative randomization schemes}
@@ -67,25 +68,29 @@ Since CAA modifies the randomization scheme to induce similarity across treatmen
 Briefly, observed values and entry order are fixed, treatment assignments are reshuffled and the test statistic computed for each permutation.  
 
 \section{Aims}
-The goal of the thesis is to address in both the binary and continuous outcome setting if covariate adaptive randomization (CAR) followed by standard asymptotic tests yield valid inference, and if so, to quantify the gains in precision relative to simple randomization (SR) or stratified block randomization (SBR).  
+The goal of the thesis is to address in both the binary and continuous outcome setting if covariate adaptive allocation (CAA) followed by standard asymptotic tests yield valid inference, and if so, to quantify the gains in precision relative to complete randomization (SR) or stratified block randomization (SBR).  
 We will compare Heritier’s modified DBR scheme to stratified block randomization and complete randomization, while comparing re-randomization based permutation tests to standard asymptotic tests in a simulation study.  
 We will consider the setting of equal allocation to treatment assignment, no temporal trend (drift), binary predictors, and two outcome types (binary and continuous).  
-Our objective is to identify any scenarios, if any, where minimization improves power relative to SBR or simple randomization. 
+Our objective is to identify any scenarios, if any, where minimization improves power relative to SBR or complete randomization. 
 Contour plots of effect size by sample size will compare power across methods for various outcome types and conditions. 
 
-We are also interested if and when the answers to the above questions change when the effect size of prognostic factors is varied relative to the treatment effect, the baseline prevalence varies from 5\% to 50\% in the binary outcome setting, inference on treatment effect is performed using none (or a subset) of the prognostic variables, and when the sample size is varied.
+We are also interested if and when the answers to the above questions change when the effect size of prognostic factors is varied relative to the treatment effect, the baseline outcome prevalence varies from 10\% to 50\% in the binary outcome setting, inference on treatment effect is performed adjusting for none or all of the prognostic variables, and when the sample size is varied.
 It is well known that ignoring the minimization design tends to yield conservative inference, and that adjusting for covariates used in the randomization scheme (balancing factors) recovers type I error rate to nominal significance levels (Xu, Proschan, Lee 2016). 
 Through comparison of estimated marginal and conditional treatment effects we seek to confirm this finding.
-We consider different sample sizes ranging from N=32 to 96 to compare CAR to SBR as small scale trials are the setting in which alternative randomization methods are considered. 
+We consider different sample sizes ranging from n=32 to 96 to compare CAR to SBR as small scale trials are the setting in which alternative randomization methods are considered. 
 We seek to identify the specific conditions by which CAR confers a precision advantage, if any, relative to other methods to offset the operational complexities involved in implementing an adaptive allocation procedure.  
 Our intent is to provide guidance to clinical researchers for determining under what settings covariate adaptive allocation provides precision gains relative to competing approaches as well as which analysis method yields valid tests with the most power. 
 
-Chapter 2 will introduce the notation used throughout the thesis, and Chapter 3 will discuss the design of the simulation study in further detail.  
-The tables of simulation results will be presented in Chapter 4 and the key observations will be discussed in Chapter 5.
+Chapter 2 will introduce the notation used throughout the thesis and discuss the design of the simulation study in further detail. 
+The tables of simulation results will be presented in Chapter 3 and the key observations will be discussed in Chapter 4.
 
 \section{Measures to evaluate aims}
 For each combination of randomization scheme and analysis approach, we assess validity by estimating the nominal significance level of the test under the null hypothesis.  
-We evaluate accuracy by estimating any potential bias and the coverage probability of confidence intervals, comparing those generated with standard regression methods (Wald-type) to permutation test quantile-based confidence intervals.  
-Average standard error estimates will also be reported for analyses using standard regression methods.  
-We evaluate efficiency by computing mean squared error (MSE) and power as a function of the true treatment effect size. 
+We evaluate precision by estimating power as a function of the true treatment effect size. 
+
+We evaluate accuracy by estimating any potential bias for all methods.
+We also estimate coverage probability of confidence intervals for model-based analysis approaches.
+However, we cannot evaluate coverage probability for permutation test quantile-based confidence intervals as they are estimated under the null hypothesis.
+ 
+
 
