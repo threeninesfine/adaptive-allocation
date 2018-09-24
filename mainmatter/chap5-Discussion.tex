@@ -2,7 +2,8 @@
 \section{Discussion}
 We sought to address whether covariate-adaptive allocation followed by re-randomization conferred any statistical power advantage relative to complete randomization, stratified block randomization, and covariate-adaptive allocation using model-based inference.
 
-\subsection{Review of Results}
+\subsection{Review of results}
+%TODO(michael): make sure `Discussion` section answers question: "Do the results validate or contradict what's been seen in the literature?"
 We should address the following topics:
 \begin{enumerate}
 	\item Does adjusting for balancing factors affect validity, or power? (short and long answer: yes).
@@ -15,19 +16,22 @@ We should address the following topics:
 	\item Does re-randomization following CAA confer a power advantage relative to model-based analysis following CAA?
 \end{enumerate}
 
-\subsection{Limitations}
-We would have liked to address the following weak points in our approach:
+%TODO(michael): consider adding `Strengths` section with non-deterministic allocation ratio
+\subsection{Limitations and potential next steps}
+We would have liked to address the following omitted considerations in our approach:
 \begin{enumerate}
 	\item \textbf{Model drift} to assess advantage of re-randomization analysis to model-based methods on reducing bias and increasing power
-	\item Considered \textbf{varying allocation method imbalance parameters} for balancing prognostic factors. Reporting metrics on "cosmetic balance" would highlight differences between randomization approaches and main practical reason behind implementing constrained randomization approaches.
-	\item Consider \textbf{different non-continuous outcome settings} where constrained randomization approaches are commonly used (e.g. Poisson regression, proportional hazards regression).
+	\item Considered \textbf{varying imbalance parameters for all constrained randomization methods}. 
+	The main practical reason behind implementing constrained randomization approaches besides statistical considerations is to control imbalance in prognostic factors across treatment arms, or to ensure balanced treatment assignments within prognostic factor strata.  
+	Further studies could consider different metrics for achieving such "cosmetic balance", although the definition of balance would have to be explicitly clarified. 
+	\item Consider \textbf{different non-continuous outcome settings} where constrained randomization approaches are commonly used (e.g. Poisson regression, proportional hazards regression). Future work would consider count and time-to-event outcomes.  Potentially, we would consider \textbf{model-based approaches} where the imbalance metric is chosen to minimize the variance of the estimated treatment effect.  In non-continuous outcome settings, equal allocation of prognostic factors across treatment arms does not imply the variance of the estimated treatment effect is minimized.
 	\item Varying \textbf{number of prognostic factors} and adjusting for a subset of prognostic factors.  Larger numbers of predictors is the case where stratification fails to provide balance and dynamic hierarchical schemes such as Heritier et. al 2005 can control balance.
-	\item \textbf{Adjusting for continuous prognostic factors} (dichotomized for allocation) as \textbf{continuous}
-	\item \textbf{Confidence intervals for re-randomization are not valid for parameter estimation}, as they are generated under the null hypothesis
-	\item Considered \textbf{model-based approaches} that would pick allocations that minimize the variance of the estimated treatment effect
+	\item \textbf{Adjusting for continuous prognostic factors} (dichotomized for allocation) as \textbf{continuous}.  We adjusted for continuous prognostic factors as continuous, although they were median dichotomized to form groups for balancing purposes. 
+	\item \textbf{Confidence intervals for re-randomization are not valid for parameter estimation}, as they are generated under the null hypothesis.  In the future, we may implement approaches for estimating treatment effect confidence intervals under alternative hypotheses %TODO(michael): cite bootstrap-based methods and so forth!
+	\item 
 \end{enumerate}
 
-
+%TODO(michael): combine `potential next steps` section with `Limitations` to discuss where you'd go further.
 \subsection{Potential next steps}
 If we had more time, we would have liked to:
 \begin{enumerate}

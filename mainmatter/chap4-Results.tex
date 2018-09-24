@@ -8,7 +8,9 @@ This issue occurs more frequently when sample size is small (n=32), outcome prev
 
 \subsection{Binary predictors}
 Power is substantially higher using CAA followed by re-randomization when compared to all other methods, including CAA followed by model-based inference.
-The modest increase in power is especially apparent in low sample size settings and low marginal outcome prevalence.
+The modest increase in power is especially apparent in low sample size settings and low marginal outcome prevalence, although the increased power is in part due to the inflated Type 1 error (see Table \ref{tab:b1p} rows 1 and 2).
+The size issues with re-randomization occur only in specific settings, particularly where convergence issues with logistic regression are present.
+Not all gains in power are due to Type 1 error inflation: when outcome prevalence increases to 50\% from 10\%, the type 1 error rate is 0.057 and 0.056 and approaches the nominal rate (see Table \ref{tab:b1p} Rows 13, 14).
 Adjusting for prognostic factors used in the balancing method consistently increased power relative to unadjusted methods in almost all considered settings.
 
 The power benefit from using CAA followed by re-randomization becomes diminished relative to all other allocation procedures when sample size increases and marginal outcome prevalence increases (see Figure \ref{fig:b1p}, bottom right quadrant).

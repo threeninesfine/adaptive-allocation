@@ -1,6 +1,12 @@
 % Chapter 3: Simulation tables (and figures)
 
+Results are reported separately by model adjustment for prognostic factors, allocation method used, and analysis type (model-based or rerandomization).
+
 \section[Binary Y, binary X]{Batch 1: Binary Outcome, Binary Predictors}
+
+The following tables report simulation results by trial size ($n$), marginal outcome prevalence ($Pr( Y )$), prognostic factor prevalence ($Pr( X )$), treatment effect size ($bZ$), and prognostic factor effect size ($bX$).
+
+Tables \ref{tab:b1p}, \ref{tab:b1mb}, and \ref{tab:b1c} report power, median bias, and coverage probability, respectively. Table \ref{tab:b1sp} report power for the subset of simulation results where the \texttt{glm} algorithm converged and at least one event was observed in each treatment arm.
 
 \input{tables/b1_power} \newpage 
 \input{tables/b1_median_bias} \newpage
@@ -13,6 +19,10 @@
 
 \section[Binary Y, continuous X]{Batch 2: Binary Outcome, Continuous Predictors}
 
+The following tables report simulation results by trial size ($n$), marginal outcome prevalence ($Pr( Y )$), treatment effect size ($bZ$), and prognostic factor effect size ($bX$).
+
+Tables \ref{tab:b2p}, \ref{tab:b2mb}, and \ref{tab:b2c} report power, median bias, and coverage probability, respectively. Table \ref{tab:b2sp} report power for the subset of simulation results where the \texttt{glm} algorithm converged and at least one event was observed in each treatment arm.
+
 \input{tables/b2_power} \newpage 
 \input{tables/b2_median_bias} \newpage
 \input{tables/b2_coverage} \newpage
@@ -23,17 +33,28 @@
 
 \section[Continuous Y, binary X]{Batch 3: Continuous Outcome, Binary Predictors}
 
+The following tables report simulation results by trial size ($n$), prognostic factor prevalence ($Pr( X )$), treatment effect size ($bZ$), and prognostic factor effect size ($bX$).
+
+Tables \ref{tab:b3p}, \ref{tab:b3mb}, and \ref{tab:b3c} report power, median bias, and coverage probability, respectively.
+
 \input{tables/b3_power} \newpage 
 \input{tables/b3_median_bias} \newpage
 \input{tables/b3_coverage} \newpage
 
 \section[Continuous Y, continuous X]{Batch 4: Continuous Outcome, Continuous Predictors}
+
+The following tables report simulation results by trial size ($n$), treatment effect size ($bZ$), and prognostic factor effect size ($bX$).
+
+Tables \ref{tab:b4p}, \ref{tab:b4mb}, and \ref{tab:b4c} report power, median bias, and coverage probability, respectively.
+
 % TODO(michael): re-run output to compute median bias! (10/9/18 DONE!)
 \input{tables/b4_power} \newpage 
 \input{tables/b4_median_bias} \newpage 
 \input{tables/b4_coverage} \newpage
 
 \section{Figures: Power, all settings}
+The figures below present power curves from the previously reported tables to facilitate comparisons between methods and simulation conditions.
+
 \begin{figure}[H]
 	\includegraphics[width=\linewidth]{figures/b1_power_all_methods_adj_unadj}
 	\caption{Batch 1: Power}
