@@ -1,6 +1,116 @@
 % Chapter 5: Discussion
 \section{Discussion}
 We sought to address whether covariate-adaptive allocation followed by re-randomization conferred any statistical power advantage relative to complete randomization, stratified block randomization, and covariate-adaptive allocation using model-based inference.
+By simulating both binary and continuous outcomes and prognostic factors, our study considered a broad range of settings compared to previous work.
+
+No issues in coverage or bias were observed with any method. 
+We specified the models correctly as simulated. 
+As mentioned in the previous section on subsetted simulations, coverage probability and bias were inflated due to low event rates and their corresponding effect on logistic regression model output.
+Our simulation exclusion criteria is similar to Kalish and Begg (1987) which excluded any analysis with a singular design matrix or if any response by treatment count was zero.
+When either the outcome prevalence or trial size was increased, bias approached zero and coverage probability converged to the nominal rate.
+
+Power advantage to covariate adaptive allocation with rerandomization inference was observed for selected conditions, particularly for binary outcomes where the marginal outcome prevalence or overall trial size is low. 
+Considering adjusted analyses, re-randomization inference restores Type 1 error rate to nominal levels where model-based inference is conservative.
+This trend is prominent when prognostic factor effect size is low and either sample size or outcome prevalence is low (see Table \ref{tab:b2p} rows 7 and 13 for continuous predictors, and Table \ref{tab:b1p} rows 7 and 13 for binary predictors).
+Comparing model-based approaches, adjustment for prognostic factors was necessary to maintain proper Type 1 error control and to maximize power under almost all considered settings and outcome types.
+The power advantage to adjusted relative to unadjusted analysis generally increases with prognostic factor effect sizes. 
+
+Comparing our results to previous findings, model-based analysis tends to be more conservative relative to re-randomization inference.
+Similarly, not adjusting for prognostic factors resulted in more conservative inference regardless of the allocation method used.  
+Our findings match the consensus that ignoring prognostic factors used in allocation scheme leads to conservative inference (Kalish and Begg 1987, Scott et. al 2002).
+Adjusting for prognostic factors used in the allocation procedure in linear models was also found necessary to obtain proper significance levels by Birkett (1985) and Forsythe (1987).
+
+Previous study on the use of rerandomization analysis is conflicted on its utility and often not adopted because of its computational complexity.
+Simon (1979) state the importance of using such approaches for calculating the appropriate randomization significance level to obtain the full benefit of the power gain with such adaptive procedures (Birkett 1985).
+Scott (2002) and Browne et. al (2005) recommend rerandomization analysis if there may be time trends in the outcome measure independent of the measured prognostic factors.
+For survival outcomes, Xu et. al (2016) found rerandomization to be just as powerful as the stratified log-rank test for estimating adjusted treatment effect hazard ratios.
+
+
+One limitation of our study is that our simulation considered only two independent prognostic factors.
+In order to adequately compare stratification to CAA, we could have additionally considered settings with multiple (potentially correlated) prognostic factors, where all baseline variables could not be included in stratified allocation.  
+Several authors (Birkett 1987) suggest that these settings are where minimization outperforms stratification.
+
+We also only considered Normally distributed random variables and dichotomized them by their median for determinining groups for balanced allocations.
+Future methods could consider using an approach of balancing means of prognostic variables across treatment groups to leverage additional information lost by dichotomizing continuous prognostic variables by arbitrary cutpoints.
+The general consensus is to incorporate balancing variables into the analysis 'as-is'; however in our simulations the dichotomized variables were used for blocking and adaptive allocation and the continuous measure used in the analysis.
+Further work considering the implications of this on the results could be warranted.
+
+Another limitation of our analysis is how we did not explicitly model drift, or a change in the outcome prevalence over time that is unrelated to measured prognostic variables.
+Not accounting for drift could lead to potential bias \textbf{(citation needed)}.
+This phenomenon is often encountered in practice and is a major consideration for adopting stratification or covariate adaptive allocation methods.
+Future simulations modeling drift in these settings could potentially compare between stratified block randomization and CAA for controlling the effects of drift.
+Several authors (Halpern and Brown 1986, Green, McEntegart, Byrom, Ghani, Shepherd 2001) claim that classical (model-based) analysis yields similar conclusions to rerandomization except in specific circumstances (such as drift).
+By modeling a change in outcome prevalence over time, we could evaluate the merits of rerandomization analysis in a setting where others have deemed it warranted. 
+
+
+\section{Conclusions}
+Covariate adaptive allocation procedures are designed to induce balance in prognostic factors, in effect forming more homogeneous subgroups of the sample. 
+From a statistical standpoint, the increase in power is not large (if at all) and must be weighed in comparison with the limitations of analyzing results following adaptive randomization.
+Having more homogeneous subgroups does not necessarily yield more efficient inference, a result that does not generalize to outcome measures beyond simple linear regression.
+However, if subgroup analysis is an important endpoint then allocation procedures inducing conditional balance in treatment allocations have merit.
+
+In most cases, comparison of baseline values "can lead to unnecessary concern" and a "satisfactory degree of control can be achieved for the disturbing effects of the baseline variables in the analysis rather than the design" (Forsythe 1987).
+
+
+
+\begin{enumerate}
+	\item Adjusting for balancing factors is necessary to guarantee validity of analysis approach, model-based or otherwise
+	\item Re-randomization following any allocation method is recommended under certain settings: 
+	\begin{itemize}
+		\item Under drift: to reduce bias and power
+		\item To increase power relative to model-based approaches by recovering precision gain from balancing procedure
+	\end{itemize}
+	\item There is considerable value in considering the type of balance desired and choosing an appropriate allocation method.
+	\begin{itemize}
+		\item Conditional or marginal balance: conditional balance may be desired if subgroup effects are of interest, marginal balance may be desired if comparability across treatment arms is most important
+		\item CAR methods can control treatment arm imbalance within group-level covariates where stratification would yield too small sample sizes within strata.
+	\end{itemize}
+	\item Balancing distribution of prognostic factors not guaranteed to increase precision in non-continuous outcome settings
+	\begin{itemize}
+		\item Equal balance across treatment arms will not necessarily guarantee variance of estimated treatment effect is minimized
+	\end{itemize}
+	\item Implementing a random element in the constrained allocation procedure is recommended; to prevent overly restricting candidate set size of allocation sequences (see Kuznetsova 2009 for refs, incl. ICH 1998; CPMP 2003)
+\end{enumerate}
+
+
+\begin{comment}
+++++++++++
+Limitations:
+\begin{itemize}
+	\item "minimization might produce higher power than 
+\end{itemize}
+
+
+
+Does re-randomization following CAA confer a power advantage relative to complete randomization?
+As in Scott et. al (2002), covariate adaptive allocation methods are largely deterministic but standard (model-based) statistical tests assume random allocation.
+
+
+Following recommendations by Heritier et. al (2005), Scott et. al (2002), adding a random element to the design reduces the potential for investigator bias from predicting future patient allocations, even though this bias cannot be explicitly modeled in simulations. 
+
+result in a variance term that is larger than what it would be under analysis accounting for the allocation procedure, leading to more conservative inference.
+Similar to \textbf{RESEARCHERS X Y AND Z}, model-based analysis tends to be more conservative relative to re-randomization inference.
+
+
+
+
+
+Covariate-adaptive allocation methods tend to ensure balanced prognostic factor distributions across treatment groups, especially when the overall trial size is small.
+However, as noted in Heritier et. al (2005), balance does not necessarily imply increased efficiency in terms of power gains.
+
+
+
+++++++++++++
+
+In general, 
+Adjusting for prognostic factors tended to increase the Type 1 error towards the nominal rate.
+For covariate adaptive allocation, adjustment was not always sufficient to ensure Type 1 error control in all considered settings without rerandomization-based inference. 
+
+Covariate adaptive allocation had similar power to complete randomization when model-based analysis was employed.
+
+
+Adjusting for prognostic factors in model does 
+These results matched the findings of previous studies that showed Type 1 error 
 
 \subsection{Review of results}
 %TODO(michael): make sure `Discussion` section answers question: "Do the results validate or contradict what's been seen in the literature?"
@@ -45,22 +155,22 @@ If we had more time, we would have liked to:
 \subsection{Concluding remarks}
 We conclude with the following remarks:
 \begin{enumerate}
-	\item Adjusting for balancing factors is necessary to guarantee validity of analysis approach, model-based or otherwise
-	\item Re-randomization following any allocation method is recommended under certain settings: 
-	\begin{itemize}
-		\item Under drift: to reduce bias and power
-		\item To increase power relative to model-based approaches by recovering precision gain from balancing procedure
-	\end{itemize}
-	\item There is considerable value in considering the type of balance desired and choosing an appropriate allocation method.
-	\begin{itemize}
-		\item Conditional or marginal balance: conditional balance may be desired if subgroup effects are of interest, marginal balance may be desired if comparability across treatment arms is most important
-		\item CAR methods can control treatment arm imbalance within group-level covariates where stratification would yield too small sample sizes within strata.
-	\end{itemize}
-	\item Balancing distribution of prognostic factors not guaranteed to increase precision in non-continuous outcome settings
-	\begin{itemize}
-		\item Equal balance across treatment arms will not necessarily guarantee variance of estimated treatment effect is minimized
-	\end{itemize}
-	\item Implementing a random element in the constrained allocation procedure is recommended; to prevent overly restricting candidate set size of allocation sequences (see Kuznetsova 2009 for refs, incl. ICH 1998; CPMP 2003)
+\item Adjusting for balancing factors is necessary to guarantee validity of analysis approach, model-based or otherwise
+\item Re-randomization following any allocation method is recommended under certain settings: 
+\begin{itemize}
+\item Under drift: to reduce bias and power
+\item To increase power relative to model-based approaches by recovering precision gain from balancing procedure
+\end{itemize}
+\item There is considerable value in considering the type of balance desired and choosing an appropriate allocation method.
+\begin{itemize}
+\item Conditional or marginal balance: conditional balance may be desired if subgroup effects are of interest, marginal balance may be desired if comparability across treatment arms is most important
+\item CAR methods can control treatment arm imbalance within group-level covariates where stratification would yield too small sample sizes within strata.
+\end{itemize}
+\item Balancing distribution of prognostic factors not guaranteed to increase precision in non-continuous outcome settings
+\begin{itemize}
+\item Equal balance across treatment arms will not necessarily guarantee variance of estimated treatment effect is minimized
+\end{itemize}
+\item Implementing a random element in the constrained allocation procedure is recommended; to prevent overly restricting candidate set size of allocation sequences (see Kuznetsova 2009 for refs, incl. ICH 1998; CPMP 2003)
 \end{enumerate}
 
 
@@ -98,7 +208,6 @@ For the continuous outcome settings, rerandomization following CAA has comparabl
 	\end{enumerate}
 \end{enumerate}
 
-\begin{comment}
 
 
 
