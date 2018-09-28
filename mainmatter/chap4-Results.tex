@@ -10,9 +10,15 @@ This issue occurs more frequently when sample size is small (n=32), outcome prev
 Power is substantially higher using CAA followed by re-randomization when compared to all other methods, including CAA followed by model-based inference.
 The modest increase in power is especially apparent in low sample size settings and low marginal outcome prevalence, although the increased power is in part due to the inflated Type 1 error (see Table \ref{tab:b1p} rows 1 and 2).
 The size issues with re-randomization occur only in specific settings, particularly where convergence issues with logistic regression are present.
-Not all gains in power are due to Type 1 error inflation: when outcome prevalence increases to 50\% from 10\%, the type 1 error rate is 0.057 and 0.056 and approaches the nominal rate (see Table \ref{tab:b1p} Rows 13, 14) while power in all considered non-null effect sizes is consistently greater than the other methods.
+Not all gains in power for CAA with re-randomization are due to Type 1 error inflation: when outcome prevalence increases to 50\% from 10\%, the type 1 error rate is 0.057 and 0.056 and approaches the nominal rate (see Table \ref{tab:b1p} Rows 13, 14) while power in all considered non-null effect sizes is consistently greater than the other methods.
 
 Adjusting for prognostic factors used in the balancing method consistently increased power relative to unadjusted methods in almost all considered settings.
+Evidence that unadjusted model-based regression approaches are too conservative is seen when comparing size of the tests for the binary outcome setting and the continuous outcome setting when using SBR with high prognostic factor effect size.
+For example, see Table \ref{tab:b2p} for n=96, $(Pr(Y))=0.1$, $bZ=1$ and $bX=3$ for complete randomization: size of the unadjusted test is .032 and adjusted is .065. 
+Similarly see Table \ref{tab:b3p} for continuous outcomes where n=96, $(Pr(X))=0.25$, $bZ=1$ and $bX=3$, size for SBR is .011 unadjusted an .047 after adjusting. 
+Comparing model-based approaches, adjustment for prognostic factors was necessary to maintain proper Type 1 error control and to maximize power under almost all considered settings and outcome types.
+The power advantage of adjusted relative to unadjusted analysis generally increases with prognostic factor effect sizes. 
+
 
 The power benefit from using CAA followed by re-randomization becomes diminished relative to all other allocation procedures when sample size increases and marginal outcome prevalence increases (see Figure \ref{fig:b1p}, bottom right quadrant).
 Even at large sample sizes re-randomization has greater power than model-based approaches, particularly when outcome prevalence is low.
@@ -24,7 +30,8 @@ This happens more often when considering within-strata odds ratios, which is why
 Coverage probability nears 100 percent at low outcome prevalence and low trial size, likely from standard errors being too large with low event rates.
 Coverage probability nears 95 percent when outcome prevalence is high and when sample size is large (n=96).
 
-Subsetted power results show better type I error control for CAA followed by re-randomization overall (compare Table \ref{tab:b1p} rows 1,2 with Table \ref{tab:b1sp}, rows 1,2).
+Recall that subsetted results included only simulations where the algorithm converged and at least one event was observed in each treatment arm.
+Compared to results on all simulations, subsetted power results show better type I error control for CAA followed by re-randomization overall (compare Table \ref{tab:b1p} rows 1,2 with Table \ref{tab:b1sp}, rows 1,2).
 The modest power increase of CAA with re-randomization relative to other allocation procedures using model-based analysis is consistent in large and small sample sizes and high and low outcome prevalences.
 
 
@@ -32,7 +39,7 @@ The modest power increase of CAA with re-randomization relative to other allocat
 Both CAA and SBR with model-based inference have higher power but fail to control size.
 In low outcome prevalence (Pr(Y)=0.1) under strong prognostic factor effect size (bX=3) with a type I error threshold of 0.05, the power under the null setting is greater than 0.10 (see Table \ref{tab:b2p}, rows 1,2). 
 As discussed in the previous section, the tendency for \texttt{glm()} to return large estimates and standard errors given certain simulation outcomes results in spuriously small p-values. 
-Looking at the subsetted results in Table \ref{tab:b2sp}, power is highest with re-randomization or at least comparable to model-based approaches that adjust for prognostic factors.
+Looking at the subsetted results in Table \ref{tab:b2sp} where size is at least as well controlled for re-randomization as other methods, power is highest with re-randomization or at least comparable to model-based approaches that adjust for prognostic factors.
 
 Considering model-based approaches, adjusted estimates are consistently more powerful than unadjusted estimates. 
 Adjusting for prognostic factors used in the balancing method controls median bias.
