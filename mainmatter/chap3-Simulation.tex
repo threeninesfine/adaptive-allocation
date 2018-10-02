@@ -1,9 +1,12 @@
 % Chapter 3: Simulation tables (and figures)
 For each batch of simulations defined by outcome and predictor variable type, the following tables report power, median bias, and coverage probability.
 
-Results are displayed by trial size ($n$), marginal outcome prevalence ($Pr( Y )$) when the outcome is binary, prognostic factor prevalence ($Pr( X )$) when prognostic factors are binary, treatment effect size ($bZ$), and prognostic factor effect size ($bX$).
+Tables are included in this section 'Simulation', and results are described and summarized in the subsequent section entitled 'Results'.
+Tables of results are displayed by trial size ($n$), marginal outcome prevalence ($Pr( Y )$) when the outcome is binary, prognostic factor prevalence ($Pr( X )$) when prognostic factors are binary, treatment effect size ($bZ$), and prognostic factor effect size ($bX$).
 
-Results are reported separately by model adjustment for prognostic factors, the treatment allocation method used, and analysis type (model-based or rerandomization).
+Results are reported separately by model adjustment for prognostic factors, 
+the treatment allocation method used (CR - complete randomization, SBR - stratified block randomization, CAA: covariate adaptive allocation\footnote{see Section 2.2: \textit{Allocation procedures} for method parameters and implementation details}), 
+and analysis type (model-based or rerandomization).
 
 For the batches where binary outcomes are considered, power is reported averaging over the subset of simulation results where the \texttt{glm} algorithm converged and at least one event was observed in each treatment arm.
 

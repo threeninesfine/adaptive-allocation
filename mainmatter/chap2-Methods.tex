@@ -51,59 +51,6 @@ The following table describes the conditions varied in the binary outcome settin
 \rowcolors{2}{white}{white}\endgroup{}
 \footnotetext[2]{In the continuous outcome setting, the effect sizes are modified to represent comparable differences in means to the given odds ratios.}
 
-
-\begin{comment}
-
-%TODO: Format condition table in 'varied conditions'
-Variable (notation)
-Description
-Associated parameters
-Cardinality
-Response (Y)
-Binary outcome, with marginal prevalence p_Y 
-p_Y = {0.1, 0.5}
-
-2 dichotomous
-1 continuous = 3
-
-Treatment assignment (Z)
-Treatment assignment is 0 or 1 with probability p_alloc.
-p_alloc = {0.5}
-1
-Balancing factors (X)
-Pre-specified risk factors predictive of outcome measure.
-Continuous covariates dichotomized by population median.
-numX = {1,2}
-probsX = {0.25, 0.5}
-
-2 dichotomous
-1 continuous = 3
-Entry time (T)
-Observed entry time
--
-1
-Trial size (n)
-Overall sample size 
-n = {32, 96}
-2
-Effect size for treatment assignment and prognostic factors.
-Magnitude of effect varied from
--	None: exp(bX) = 1.0
--	Low: exp(bX) = 1.1
--	High: exp(bX) = 3
-bZ = {log(1.0), log(3)}
-bX = {log(1.1), log(3)}
-2 * 2 = 4
-Effect size for drift
-Magnitude of effect varied from
--	None: exp(bT) = 1.0
--	Severe: exp(bT) = 3
-bT = {log(1.0), log(3)}
-2
-
-\end{comment}
-
-
 \section{Analysis approaches}
 For each allocation procedure we estimated the treatment effect, adjusted and unadjusted for prognostic factors.  To evaluate power, coverage, and type I error control, we report the associated linear and logistic regression model-based p-values and Wald-type confidence intervals, based on a two-sided type I error threshold of 0.05.  For balancing purposes, continuous prognostic factors were first dichotomized by their population median, and later parameterized as continuous in the adjusted analysis.
 

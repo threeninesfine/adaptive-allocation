@@ -20,7 +20,7 @@ Comparing model-based approaches, adjustment for prognostic factors was necessar
 The power advantage of adjusted relative to unadjusted analysis generally increases with prognostic factor effect sizes. 
 
 
-The power benefit from using CAA followed by re-randomization becomes diminished relative to all other allocation procedures when sample size increases and marginal outcome prevalence increases (see Figure \ref{fig:b1p}, bottom right quadrant).
+The power benefit from using CAA followed by re-randomization becomes diminished relative to all other allocation procedures an analytic methods when sample size increases and marginal outcome prevalence increases (see Figure \ref{fig:b1p}, bottom right quadrant).
 Even at large sample sizes re-randomization has greater power than model-based approaches, particularly when outcome prevalence is low.
 
 Median bias (Table \ref{tab:b1mb}) is appreciably low and approaches zero when the estimated treatment effect is null or when trial size is large (n=96).
@@ -36,7 +36,7 @@ The modest power increase of CAA with re-randomization relative to other allocat
 
 
 \subsection{Continuous predictors}
-Both CAA and SBR with model-based inference have higher power but fail to control size.
+Both CAA and SBR with model-based inference have the highest power compared to all other approaches but fail to control size.
 In low outcome prevalence (Pr(Y)=0.1) under strong prognostic factor effect size (bX=3) with a type I error threshold of 0.05, the power under the null setting is greater than 0.10 (see Table \ref{tab:b2p}, rows 1,2). 
 As discussed in the previous section, the tendency for \texttt{glm()} to return large estimates and standard errors given certain simulation outcomes results in spuriously small p-values. 
 Looking at the subsetted results in Table \ref{tab:b2sp} where size is at least as well controlled for re-randomization as other methods, power is highest with re-randomization or at least comparable to model-based approaches that adjust for prognostic factors.
@@ -54,7 +54,7 @@ All methods perform comparably with respect to power.
 There is not as much of an advantage to re-randomization compared to model-based analysis approaches in the continuous outcome setting.
 
 Median bias was tiny and coverage probability approached 95 percent for all methods and all conditions.
-An exception is when prognostic factor effect size is large, stratified block randomization was used, and covariates were not adjusted for.
+An exception is when prognostic factor effect size is large, stratified block randomization was used, and covariates were not adjusted for: see for example Table \ref{tab:b3mb}, even rows.
 
 \subsection{Continuous predictors}
 Adjusting for prognostic factors did not considerably increase power, except when prognostic factor effect size is large.
