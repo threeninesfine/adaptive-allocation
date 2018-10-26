@@ -74,39 +74,41 @@
     \vfill
     {\Large\sc\uwtitle\par}
     \vfill
-    \emph{by} \\ 
     \uwauthor \\
     \vfill
-    A dissertation submitted in partial fulfillment of \\
-    the requirements for the degree of \\
+    A thesis \\ 
+    submitted in partial fulfillment of the\\
+    requirements for the degree of \\
     \vfill
     \uwdegree \\
-    (\uwdepartment) \\
     \vfill
-    \emph{at the} \\
     \textsc{University of Washington -- Seattle}\\
     \uwgraddate \\
     \vfill
-    \noindent Defended on \uwdefensedate{}\\ Dissertation approved by the following members of the Final Oral Committee: \\
-    \ifx\uwfoca\undefined {} 
-      \else \boxfoc{\uwfoca}{\uwranka}{\uwdepa} \\
-    \fi
-    \ifx\uwfocb\undefined {} 
-      \else \boxfoc{\uwfocb}{\uwrankb}{\uwdepb} \\
-    \fi
-    \ifx\uwfocc\undefined {} 
-      \else \boxfoc{\uwfocc}{\uwrankc}{\uwdepc} \\
-    \fi
-    \ifx\uwfocd\undefined {} 
-      \else \boxfoc{\uwfocd}{\uwrankd}{\uwdepd} \\
-    \fi
-    \ifx\uwfoce\undefined {} 
-      \else \boxfoc{\uwfoce}{\uwranke}{\uwdepe} \\
-    \fi
-    \ifx\uwfocf\undefined {} 
-      \else \boxfoc{\uwfocf}{\uwrankf}{\uwdepf} \\
-    \fi
+    \noindent Committee: \\
+    Amalia Magaret, Chair \\
+    Mike LeBlanc \\
+    %\ifx\uwfoca\undefined {} 
+    %  \else \boxfoc{\uwfoca}{\uwranka}{\uwdepa} \\
+    %\fi
+    %\ifx\uwfocb\undefined {} 
+    %  \else \boxfoc{\uwfocb}{\uwrankb}{\uwdepb} \\
+    %\fi
+    %\ifx\uwfocc\undefined {} 
+    %  \else \boxfoc{\uwfocc}{\uwrankc}{\uwdepc} \\
+    %\fi
+    %\ifx\uwfocd\undefined {} 
+    %  \else \boxfoc{\uwfocd}{\uwrankd}{\uwdepd} \\
+    %\fi
+    %\ifx\uwfoce\undefined {} 
+    %  \else \boxfoc{\uwfoce}{\uwranke}{\uwdepe} \\
+    %\fi
+    %\ifx\uwfocf\undefined {} 
+    %  \else \boxfoc{\uwfocf}{\uwrankf}{\uwdepf} \\
+    %\fi
     \vfill
+    Program Authorized to Offer Degree:\\
+    \uwdepartment \\
   \end{center}
   \clearpage
 }
@@ -120,10 +122,10 @@
   \thispagestyle{empty}
   \begin{center}
     \null
-    \vfill
-    \copyright{} Copyright \uwauthor{} \uwgraddate{}\\
-    All Rights Reserved
     \vspace{1in}
+    \copyright{} Copyright \uwgraddate{}\\
+     \uwauthor{}
+    \vfill
   \end{center}
 }
 
@@ -145,15 +147,21 @@
   %% The UMI abstract is not part of the document, so we skip pagination
   \savepagenumber
   \thispagestyle{empty}
-
   \begin{center}
-    {\Large \textsc{\uwtitle}} \\
+  University of Washington \\
+  \vspace{1cm}
+  \textbf{Abstract} \\
+  \vspace{1cm}
+    \uwtitle \\
+    \vspace{1cm}
     \uwauthor \\
-    Under the supervision of \uwranka \uwfoca \\
-    At the University of Wisconsin--Madison \\
+    \vspace{1cm}
+    Chair of the Supervisory Committee:\\
+    Amalia S. Magaret \\
+    Department of Biostatistics
   \end{center}
 
-  \vspace{\baselineskip}
+  \vspace{1cm}
 
   \uwabstract
 
@@ -178,8 +186,6 @@
 
 % Set memoir's DoubleSpacing
 \DoubleSpacing
-
-
 
 %%%%%%%%%%%%%%% end of *.sty file
 \endinput

@@ -5,8 +5,8 @@
 \cleardoublepage
 \setcounter{page}{1}
 
-\section{Abstract}
-\uwabstract
+\thecopyrightpage
+\theumiabstract
 \cleardoublepage
 
 \section{Acknowledgments}
@@ -16,7 +16,7 @@ She has been a steadfast advocate on my part in navigating graduate school, and 
 I would like to thank Gitana for her outstanding work to make us students feel welcome throughout graduate school.
 Her being supportive and understanding went beyond her role as student advisor and I am very thankful for her help. 
 
-Also wish to thank Scott Emerson for the thesis idea and for inspiring bravery to pursue lines of thought despite opposing viewpoints.
+Also wish to thank Scott Emerson for the thesis idea and for inspiring bravery to ideas despite opposing viewpoints.
 I am grateful for his role in shaping my journey towards becoming a better critical thinker. 
 
 I want to thank both my parents Yen and Steve for their support throughout the graduate school process and hanging in there with me to the end.
@@ -44,7 +44,8 @@ I want to thank both my parents Yen and Steve for their support throughout the g
 \chapter{Figures}
 \include{mainmatter/chap7-Figures}
 
-\bibliographystyle{utcaps}
-\bibliography{backmatter/uwthesis}
-
+% \bibliographystyle{natbib}
+\nocite{*}
+% \bibliography{backmatter/uwthesis}
+\printbibliography 
 \end{document}

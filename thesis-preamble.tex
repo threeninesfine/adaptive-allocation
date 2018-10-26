@@ -3,21 +3,40 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{uwthesis}
-
 \settitle{Impact of Covariate Adaptive Allocation Procedures on Power and Validity in Small-Scale Clinical Studies}
 \setauthor{Michael Flanagin}
-\setdepartment{Biostatistics}
+\setdepartment{School of Public Health, Department of Biostatistics}
 \masters
 \setgraddate{2018}
 \setdefensedate{October 12, 2018} %TODO: modify defense date!
 
-\setfoca{Amalia Magaret}{Adjunct Research Professor}{Biostatistics}
-\setfocb{Mike LeBlanc}{Research Professor}{Biostatistics} 
+\setfoca{Amalia Magaret}{Chair}{}%{Adjunct Research Professor}{Biostatistics}
+\setfocb{Mike LeBlanc}{}{}%{Research Professor}{Biostatistics} 
 
 \setabstract{%
-This is where my abstract goes. %TODO: write abstract!
-}
+Covariate adaptive allocation presents an attractive alternative to conventional randomization schemes, particularly in small scale clinical studies where balance in multiple prognostic factors is desired. 
+While the approach introduces balance in multiple baseline prognostic factors, the impact on statistical power in various experimental settings compared to complete or restricted randomization is less well understood.
 
+We investigated under which settings covariate adaptive allocation confers a power advantage relative to complete randomization or stratified block randomization.
+We also considered the impact of statistical adjustment for prognostic factors on power, and sought to address if rerandomization inference under covariate adaptive allocation is appropriate to gain power or to maintain proper type 1 error control.
+
+We conducted a simulation study of a small scale clinical trial of a binary treatment effect and considered both binary and continuous outcomes and prognostic factors. 
+Various trial sizes, treatment and prognostic factor effect sizes, and marginal outcome and prognostic factor prevalences were considered.
+We compared an extension of the covariate adaptive allocation (CAA) scheme proposed by Heritier et. al (2005) to complete randomization and stratified block randomization on power, type 1 error, bias, and coverage probability.
+
+Adjusting for prognostic factors used in the allocation method consistently increased power under almost all considered settings relative to unadjusted analyses, which tended towards conservative inference.
+
+% NOTE: remove instances to 'infer
+In binary outcomes, power is higher in CAA followed by rerandomization compared to all other methods, after adjustment for prognostic factors. 
+The power benefit from CAA with rerandomization is most apparent in settings with low trial size (n=32) and low marginal outcome prevalence (Pr(Y)=0.10). 
+
+Some type 1 error inflation from CAA with rerandomization is observed in the binary setting; subset analysis suggests size issues may be due to convergence issues with logistic regression under low event rates. 
+Where convergence issues are not present, median bias and coverage probability (for model-based approaches) are appreciably controlled under all considered methods after adjusting for prognostic factors.
+Power for all methods became comparable to CAA with rerandomization under large trial sizes (n=96) or high marginal outcome prevalence (Pr(Y)=0.50).
+For continuous outcomes and correctly specified analysis models, there is no appreciable difference in power between the considered allocation methods.
+
+Covariate adaptive allocation controls imbalance for multiple prognostic factors and increases power under some settings.
+}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
